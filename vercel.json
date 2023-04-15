@@ -1,5 +1,8 @@
 {
-  "buildCommand": "npm run build",
+  "build": {
+    "command": "npm run build",
+    "output": "dist"
+  },
   "headers": [
     {
       "source": "**/*.json",
