@@ -1,0 +1,14 @@
+{
+  "buildCommand": "npm run build",
+  "headers": [
+    {
+      "source": "**/*.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    }
+  ]
+}
