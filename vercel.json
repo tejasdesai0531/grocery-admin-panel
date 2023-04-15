@@ -2,16 +2,5 @@
   "build": {
     "command": "npm run build",
     "output": "dist"
-  },
-  "headers": [
-    {
-      "source": "**/*.json",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/json"
-        }
-      ]
-    }
-  ]
+  }
 }
