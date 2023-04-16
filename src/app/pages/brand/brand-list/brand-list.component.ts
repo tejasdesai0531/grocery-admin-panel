@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrandListComponent implements OnInit {
 
+  brandList = [
+    { id: 1, name: 'ABC', code: 'ABC' },
+    { id: 2, name: 'xyz', code: 'xyz'},
+    { id: 3, name: 'dfd', code: 'dfdf'}
+  ]
+
   constructor() { }
 
   ngOnInit(): void {
