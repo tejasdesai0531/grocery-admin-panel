@@ -14,12 +14,37 @@
 
 
     <form [formGroup]="myForm">
+        <div nz-row [nzGutter]="10">
+          <div nz-col nzSpan="8">
+            <h4 style="font-size: 14px;">Name</h4>
+            <input formControlName="name" nz-input placeholder="Basic usage" />
+            <p *ngIf="myForm.get('name')?.hasError('required') && myForm.get('name')?.touched" style="font-size: 12px; color: red; margin: 0">This Field is required</p>
+          </div>
+          <div nz-col nzSpan="8">
+            <h4 style="font-size: 14px;">Email</h4>
+            <input formControlName="email" nz-input placeholder="Basic usage" />
+            <p *ngIf="myForm.get('email')?.hasError('required') && myForm.get('email')?.touched" style="font-size: 12px; color: red; margin: 0">This Field is required</p>
+            <p *ngIf="myForm.get('email')?.hasError('email') && myForm.get('email')?.touched" style="font-size: 12px; color: red; margin: 0">Please enter valid email</p>
+          </div>
+          <div nz-col nzSpan="8">
+            <h4 style="font-size: 14px;">Contact</h4>
+            <input formControlName="contact" nz-input placeholder="Basic usage" />
+            <p *ngIf="myForm.get('contact')?.hasError('required') && myForm.get('contact')?.touched" style="font-size: 12px; color: red; margin: 0">This Field is required</p>
+            <p *ngIf="myForm.get('contact')?.hasError('invalidContact') && myForm.get('contact')?.touched" style="font-size: 12px; color: red; margin: 0">Please enter valid email</p>
+          </div>
+        </div>
+
+        <br>
+
         <div formArrayName="myArray">
             <h4 style="font-size: 14px;">Restaurant Images</h4>
             <div *ngFor="let field of myArray.controls; let i = index" style="margin-top: 10px">
                 <div nz-row [nzGutter]="10">
-                    <input nz-col nzSpan="10" [formControlName]="i" nz-input placeholder="Basic usage" />
-                    <button style="margin-left: 10px" (click)="removeField(i)" nz-button nzType="primary"
+                    <div nz-col nzSpan="10">
+                      <input [formControlName]="i" nz-input placeholder="Basic usage" />
+                      <p *ngIf="field.hasError('required') && field.touched" style="font-size: 12px; color: red; margin: 0">This Field is required</p>
+                    </div>
+                    <button *ngIf="i > 0" style="margin-left: 10px" (click)="removeField(i, field)" nz-button nzType="primary"
                         nzDanger>Remove</button>
                 </div>
                 <div *ngIf="myArray.invalid && myArray.touched">

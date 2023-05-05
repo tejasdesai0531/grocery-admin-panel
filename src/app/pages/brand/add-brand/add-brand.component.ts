@@ -14,16 +14,20 @@ export class AddBrandComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
-      myArray: this.fb.array([this.fb.control('', Validators.required)], [this.validateMyArray])
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      contact: ['', [Validators.required, this.validateContact]],
+      myArray: this.fb.array([this.fb.control('', Validators.required)])
     });
   }
 
-  validateMyArray(control: AbstractControl): { [key: string]: boolean } | null {
-    const array = control as FormArray;
-    if (array.length === 0) {
-      return { 'noEntries': true };
-    }
-    return null;
+  validateContact(control: AbstractControl): { [key: string]: boolean } | null {
+
+    if(!control.value) return null
+
+    const validPattern = /^\d{10}$/; // Regular expression to match a 10-digit number
+    const isValid = validPattern.test(control.value);
+    return isValid ? null : { 'invalidContact': true };
   }
 
   get myArray(): FormArray {
@@ -34,13 +38,14 @@ export class AddBrandComponent implements OnInit {
     this.myArray.push(this.fb.control('', Validators.required));
   }
 
-  removeField(index: number): void {
+  removeField(index: number, field: any): void {
     this.myArray.removeAt(index);
   }
 
   submit() {
     console.log(this.myForm)
+    this.myForm.markAllAsTouched()
   }
-  
+
 
 }
