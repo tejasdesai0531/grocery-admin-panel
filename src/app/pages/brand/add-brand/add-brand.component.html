@@ -1,1 +1,40 @@
-<p>add-brand works!</p>
+<div>
+
+    <!-- <div nz-row [nzGutter]="10">
+        <div nz-col nzSpan="8">
+            <input nz-input placeholder="Basic usage" />
+        </div>
+        <div nz-col nzSpan="8">
+            <input nz-input placeholder="Basic usage" />
+        </div>
+        <div nz-col nzSpan="8">
+            <input nz-input placeholder="Basic usage" />
+        </div>
+      </div> -->
+
+
+    <form [formGroup]="myForm">
+        <div formArrayName="myArray">
+            <h4 style="font-size: 14px;">Restaurant Images</h4>
+            <div *ngFor="let field of myArray.controls; let i = index" style="margin-top: 10px">
+                <div nz-row [nzGutter]="10">
+                    <input nz-col nzSpan="10" [formControlName]="i" nz-input placeholder="Basic usage" />
+                    <button style="margin-left: 10px" (click)="removeField(i)" nz-button nzType="primary"
+                        nzDanger>Remove</button>
+                </div>
+                <div *ngIf="myArray.invalid && myArray.touched">
+                    <p *ngIf="myArray.hasError('noEntries')">Please add at least one entry.</p>
+                </div>
+            </div>
+        </div>
+        <button style="margin-top: 10px" (click)="addNewField(); myArray.markAsTouched()" nz-button nzType="primary">Add</button>
+
+    </form>
+
+    <br>
+
+    <div style="display: flex; justify-content: center;">
+        <button style="margin-top: 10px" (click)="submit()" nz-button nzType="primary">Submit</button>
+    </div>
+
+</div>
