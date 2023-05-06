@@ -38,7 +38,7 @@ export class AddBrandComponent implements OnInit {
     this.myArray.push(this.fb.control('', Validators.required));
   }
 
-  removeField(index: number, field: any): void {
+  removeField(index: number): void {
     this.myArray.removeAt(index);
   }
 
