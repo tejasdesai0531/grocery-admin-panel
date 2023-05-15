@@ -1,0 +1,20 @@
+<div class="date-picker">
+    <input type="text" [(ngModel)]="selectedDate" (click)="showDatePicker()">
+    <div class="date-picker-container" *ngIf="showDatepicker">
+      <div class="calendar">
+        <div class="month">
+          <div class="prev" (click)="prevMonth()">&#10094;</div>
+          <div>{{months[currentMonth]}} {{currentYear}}</div>
+          <div class="next" (click)="nextMonth()">&#10095;</div>
+        </div>
+        <div class="days">
+          <div class="day" *ngFor="let day of days">{{day}}</div>
+          <div class="day" *ngFor="let blank of blankDays"></div>
+          <div class="day" *ngFor="let date of monthDates" (click)="selectDate(date)">
+            {{date | date:'d'}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -36,6 +36,18 @@
 
         <br>
 
+        <div style="height: 300px;"
+            leaflet 
+            [leafletOptions]="options"
+            [leafletLayersControl]="layersControl"
+            [leafletLayers]="layers"
+            (leafletClick)="onMapClick($event)">
+        </div>
+        
+
+
+        <br>
+
         <div formArrayName="myArray">
 
             <h4 style="font-size: 14px;">Restaurant Images</h4>
