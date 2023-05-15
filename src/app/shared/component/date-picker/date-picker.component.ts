@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./date-picker.component.scss']
 })
 export class DatePickerComponent {
-  selectedDate: Date = new Date();
+  selectedStartDate: Date = new Date();
+  selectedEndDate: Date | null = null;
   showDatepicker: boolean = false;
   currentMonth: number = new Date().getMonth();
   currentYear: number = new Date().getFullYear();
@@ -47,8 +48,12 @@ export class DatePickerComponent {
   }
 
   selectDate(date: Date) {
-    this.selectedDate = date;
-    this.showDatepicker = false;
+    if(!this.selectedStartDate) {
+      this.selectedStartDate = date
+    } else {
+      this.selectedEndDate = date
+    }
+    // this.showDatepicker = false;
   }
 
   generateCalendar() {
@@ -62,13 +67,23 @@ export class DatePickerComponent {
     for (let i = 1; i <= numberOfDays; i++) {
       this.monthDates.push(new Date(this.currentYear, this.currentMonth, i));
     }
+    console.log("ZZZ : ", firstDayOfWeek)
     // Add blank days to beginning of calendar
     for (let i = 0; i < firstDayOfWeek; i++) {
-      // this.blankDays.push({});
+      this.blankDays.push({});
     }
     // Add blank days to end of calendar
-    for (let i = lastDayOfWeek + 1; i < 7; i++) {
-      // this.blankDays.push({});
+    // for (let i = lastDayOfWeek + 1; i < 7; i++) {
+    //   this.blankDays.push({});
+    // }
+  }
+
+  getBGColor(date: any) {
+    console.log(date === this.selectedStartDate.setHours(0, 0, 0, 0))
+    if(date === this.selectedStartDate.setHours(0, 0, 0, 0)) {
+      return 'blue'
+    } else {
+      return 'white'
     }
   }
 }

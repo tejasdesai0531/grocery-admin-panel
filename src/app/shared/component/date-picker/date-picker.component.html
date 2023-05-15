@@ -1,5 +1,5 @@
 <div class="date-picker">
-    <input type="text" [(ngModel)]="selectedDate" (click)="showDatePicker()">
+    <input type="text" [(ngModel)]="selectedStartDate" (click)="showDatePicker()">
     <div class="date-picker-container" *ngIf="showDatepicker">
       <div class="calendar">
         <div class="month">
@@ -10,7 +10,7 @@
         <div class="days">
           <div class="day" *ngFor="let day of days">{{day}}</div>
           <div class="day" *ngFor="let blank of blankDays"></div>
-          <div class="day" *ngFor="let date of monthDates" (click)="selectDate(date)">
+          <div class="day" *ngFor="let date of monthDates" (click)="selectDate(date)" [style.background-color]="getBGColor(date)">
             {{date | date:'d'}}
           </div>
         </div>
